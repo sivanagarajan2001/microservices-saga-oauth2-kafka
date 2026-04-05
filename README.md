@@ -60,5 +60,34 @@ The system consists of multiple independent services that communicate asynchrono
 - Apache Kafka  
 
 ---
+## 🔐 Authentication & API Usage (OAuth2 + JWT)
 
-## 🏗️ Architecture
+This project secures APIs using **OAuth2 (Client Credentials Flow)** and **JWT tokens**.
+
+---
+
+## 🔑 Step 1: Generate Access Token
+
+Use the following cURL command:
+
+```bash
+curl -X POST http://localhost:9000/oauth2/token \
+-u client:secret \
+-d "grant_type=client_credentials&scope=read"
+
+---
+
+## 🚀 Step 2: Call Protected API (Create Order)
+
+After generating the access token, use it to call the secured API.
+
+🔗 Endpoint
+
+POST http://localhost:8081/api/orders?amount=500
+
+📥 cURL Command
+
+
+curl -X POST "http://localhost:8081/api/orders?amount=500" \
+-H "Authorization: Bearer <ACCESS_TOKEN>"
+---
